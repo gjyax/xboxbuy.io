@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="https://bundle.run/buffer@6.0.3"></script>
+		<script type="text/javascript" src="https://unpkg.com/crypto-js/crypto-js.js"></script>
+		<script type="text/javascript" src="layui/layui.js"></script>
+		<link rel="stylesheet" href="layui/css/layui.css">
+		<script type="text/javascript" >
+		function bufferizeSecret(secret) {
+		    if (typeof secret === 'string') {
+		        // Check if it's hex
+		        if (secret.match(/[0-9a-f]{40}/i)) {
+		            return buffer.Buffer.from(secret, 'hex');
+		        } else {
+		            // Looks like it's base64
+		            return buffer.Buffer.from(secret, 'base64');
+		        }
+		    }
+		    return secret;
+		}
+		function generateAuthCode(secret, timeOffset) {
+		    secret = bufferizeSecret(secret);
+		
+		    let time = Math.floor(Date.now() / 1000) + (timeOffset || 0);
+		
+		    let b = buffer.Buffer.allocUnsafe(8);
+		    b.writeUInt32BE(0, 0); // This will stop working in 2038!
+		    b.writeUInt32BE(Math.floor(time / 30), 4);
+		
+		    let hmac = CryptoJS.algo.HMAC.create(CryptoJS.algo.SHA1, CryptoJS.lib.WordArray.create(secret));
+		    hmac = buffer.Buffer.from(hmac.update(CryptoJS.lib.WordArray.create(b)).finalize().toString(CryptoJS.enc.Hex), 'hex');
+		
+		    let start = hmac[19] & 0x0F;
+		    hmac = hmac.slice(start, start + 4);
+		
+		    let fullcode = hmac.readUInt32BE(0) & 0x7FFFFFFF;
+		
+		    const chars = '23456789BCDFGHJKMNPQRTVWXY';
+		
+		    let code = '';
+		    for (let i = 0; i < 5; i++) {
+		        code += chars.charAt(fullcode % chars.length);
+		        fullcode /= chars.length;
+		    }
+		    return code;
+		};
+		</script>
+	</head>
+	<body>
+		<br><br>
+		<h1 align="center"> steam令牌</h1>
+		<br>
+		<table id="demo" lay-filter="test" ></table>	
+		
+		<script type="text/html" id="barDemo">
+		  <a class="layui-btn layui-btn-xs" lay-event="detail">查看令牌</a>
+		</script>
+		
+	</body>
+	<script>
+	var lingp=[
+		{"zh":"	gerasimoralin1989	","mm":"	stdwu1ibu	","my":"	Zyw1QqBi5ZC63ftDj7NteKlGvMU=	","id":"	76561199019543606	","sf":"	F09y8DoQqMY3NGS4cUO9eTadwQQ=	","lp":"		"},
+		{"zh":"	25345346345	","mm":"	m970497206a	","my":"	1rm7fFnIsHLneVy2GyK49U10/mA=	","id":"	76561199139930720	","sf":"	5amz+3AIVZf59uiP5ryd/1ZEKs4=	","lp":"		"},
+		{"zh":"	1256486455	","mm":"	SGDVGAA11AA	","my":"	CVgZ8BislZGRLD3QdsSwLLwAKzI=	","id":"	76561198911092966	","sf":"	3rXIBYPwVTZUQV7nM7Q9J/QXEHM=	","lp":"		"},
+		{"zh":"	418645312	","mm":"	SGDVGAA11AAA	","my":"	xuOfgQH8ByJ1050iNZ4R0XnZe84=	","id":"	76561198911273027	","sf":"	TM9M+xBAdVOAY5Oqi6/aEmt2Tq0=	","lp":"		"},
+		{"zh":"	1564153212	","mm":"	DVGAA11AAA	","my":"	lDBeIcRCEGEjrkS2RipnXpTwyKk=	","id":"	76561198911369739	","sf":"	QOle/XlFhir3KQba8bs8y/JJCyQ=	","lp":"		"},
+		{"zh":"	maomin52013142	","mm":"	ESGDVGAAAAA	","my":"	27KkK/MSITv9j8DVGtFzpIDDxgU=	","id":"	76561198978220834	","sf":"	tK6N1zYT/vtbwqsra+hWYFzncOc=	","lp":"		"},
+		{"zh":"	maomin52013143	","mm":"	ESGDVGAAAA	","my":"	fEvTmo93mDjWupV+ub3dNdiWwY8=	","id":"	76561198978240877	","sf":"	6ZjT5ea57xx+ZPDpOwr9LnPKxwk=	","lp":"		"},
+		{"zh":"	815664231	","mm":"	4IOHQJER11	","my":"	lWXkFSBTiL+3ooujg+D8+FhqJD0=	","id":"	76561198930197995	","sf":"	GLTOhEF5qxrUtHE0zWQh9OsIr8E=	","lp":"		"},
+		{"zh":"	plint433	","mm":"	tyasdtr1263716sscc	","my":"	KYr5I0SYFi4pdsdUDjsqkpnZ3h4=	","id":"	76561199246883145	","sf":"	b3rs1QyAQuEr8oUyOludQXPp+mc=	","lp":"		"},
+		{"zh":"	plint340	","mm":"	fthasdghf1287s3189	","my":"	lLa/6ZY5AAcc1l97gawmG4A09uA=	","id":"	76561199242472539	","sf":"	NGiQtaxCRt3SYxfwMAdokM/JeoI=	","lp":"		"},
+		{"zh":"	plint243	","mm":"	s56rasd564125643ytsac	","my":"	4CGY703p/Op6MOl0gCOcM+8ProI=	","id":"	76561199238375587	","sf":"	naDUprGFBjncX0uy2evf4uV45dw=	","lp":"		"},
+		{"zh":"	plint590	","mm":"	cvsadcvbn123nbm2d	","my":"	xkV9hoRYSzruVguieFKE24Atrao=	","id":"	76561199259336632	","sf":"	IZKFt9Xw9QkiT/MVd6cFxtna8P8=	","lp":"		"},
+		{"zh":"	plint457	","mm":"	gds12er315416	","my":"	oLZQYse5qlX7zLeUl+l5jc2c5qA=	","id":"	76561199248832274	","sf":"	IqTg8dAriFbfgfrbeqjLgEpuoss=	","lp":"		"},
+		{"zh":"	plint458	","mm":"	1ty3y132721378ss	","my":"	xTbYQG+qfqv51DT5VTKMoGJby1s=	","id":"	76561199247872266	","sf":"	PSjwNbXyFUf4iuNfbieAMrzgvtk=	","lp":"		"},
+		{"zh":"	plint452	","mm":"	bvfasgfdfcg1236116	","my":"	SPVZ4AlO4CrgxMdLp90ORQuAbHE=	","id":"	76561199247809399	","sf":"	8wHF46kR+YHaIYzhOAa/vuRNcto=	","lp":"		"},
+		{"zh":"	plint451	","mm":"	615623671tyua1sc213	","my":"	WAPpfrtaRIAwU8devbYnBI3Z67w=	","id":"	76561199247753603	","sf":"	ULQ1VGKhNt2CfAoZcxJhtjMXO24=	","lp":"		"},
+		{"zh":"	plint127	","mm":"	ygasdghjassdg19872290	","my":"	XAKYasTP5600374UkAxhIeV0XeA=	","id":"	76561199235317793	","sf":"	dPyiVuknjF+NPHBv1lLcvYGdAmY=	","lp":"		"},
+		{"zh":"	plint335	","mm":"	vbabsgfdsa7812371s	","my":"	t8iPF9AlnArer2ZTFGMtgjmoF/I=	","id":"	76561199242107033	","sf":"	RgOEIHhFhVR3lzAwIj2lOqhl/Ls=	","lp":"		"},
+		{"zh":"	plint591	","mm":"	asjdjb1n23nbm1nbmsd	","my":"	neBSDBiVJCdOe5aPDExm8HFWil8=	","id":"	76561199259093835	","sf":"	eC5ug1d0aTr8zhMg36O8rvMJBPE=	","lp":"		"},
+		{"zh":"	plint399	","mm":"	ghfsafgdh671s23671	","my":"	Q86IFsco2Cscny0xFSGgAzu4uO8=	","id":"	76561199245565651	","sf":"	NzYyyC+I4fBpTNn8zjzIlmDo1uY=	","lp":"		"},
+		{"zh":"	plint442	","mm":"	fd12drgf316567as	","my":"	Sm/9FNqMnwusHV7Axbw4hX8bizg=	","id":"	76561199247396118	","sf":"	onFg+7bp3inL2StG5YEkjOhPQcI=	","lp":"		"},
+		{"zh":"	plint441	","mm":"	fgcasvvdcvbc78217811	","my":"	ShzPGDfr3WESdXd8si0CABZZWWw=	","id":"	76561199247425457	","sf":"	xcA+soQmKIcN+NI9sMR3ofWl+rE=	","lp":"		"},
+		{"zh":"	plint409	","mm":"	fgdasdfgh11267361	","my":"	iSkVLPmvIIiK/7qFOg98oe7B1CI=	","id":"	76561199246682734	","sf":"	PTQf2lJfqTxEtz8ym69mQmraLTk=	","lp":"		"},
+		{"zh":"	plint408	","mm":"	ghajshgd1289389	","my":"	M1oH00B8yVOSnT4/qPm6jOtlxTU=	","id":"	76561199246452967	","sf":"	bgPnz4O6WEStYeykL29/tTL8Pt4=	","lp":"		"},
+		{"zh":"	plint569	","mm":"	bgjsadb12h2g3shj1c	","my":"	H82B0P4Ibu9zOppcpT4fuKGc9X8=	","id":"	76561199258016105	","sf":"	uFmAZbq7MH9FIIW+VFi0na9LL3g=	","lp":"		"},
+		{"zh":"	plint568	","mm":"	jkasdj8y71238scss	","my":"	XWDQQMPl9aqqJnnUfWK45b5BIXs=	","id":"	76561199258013278	","sf":"	Bn9WX0QcCVP5ADUIdi2ootyNp9g=	","lp":"		"},
+		{"zh":"	plint571	","mm":"	nmbadsn1ui23ui12sc	","my":"	zQqwseGF69kvb03MbFl13rgNPtw=	","id":"	76561199258341534	","sf":"	jQTp0VPXLTJ8Eu3aIfK6MkvFXzc=	","lp":"		"},
+		{"zh":"	plint570	","mm":"	nbasdhgvb123bn12	","my":"	dTkLIT61xTx7so3hY9Z6AFg+no0=	","id":"	76561199257744830	","sf":"	mkrlrfsCzmSw3nYeErBYoYZ9sc0=	","lp":"		"},
+		{"zh":"	plint574	","mm":"	hjasdjjk123klj1lk	","my":"	cnvksiecJhjzGX15bpDIgmPV5xg=	","id":"	76561199257660794	","sf":"	v8sQ0SsFlXLRXB5LmqfR5zs1xN0=	","lp":"		"},
+		{"zh":"	plint575	","mm":"	ghasbdn12nm31nm2sc	","my":"	5rgjEDeKMKn6ZKMBjldscKh+F0w=	","id":"	76561199258006860	","sf":"	lyWguBvpfekQarBPC60ygwMnFSA=	","lp":"		"},
+		{"zh":"	plint582	","mm":"	avsbdvb21bn31nbmsc	","my":"	v7Y80qjzTbg+V01l6sIUAZvTxWE=	","id":"	76561199259030110	","sf":"	Xoys7hEffKCEoqMxepAnDRduLPo=	","lp":"		"},
+		{"zh":"	plint600	","mm":"	fasdfagf12gh3hg21sc	","my":"	7eCqOI0GITw8/al3imbnBtiqH78=	","id":"	76561199266963457	","sf":"	dj3gKleVdGrsxXMCZ5xKy4dxjpw=	","lp":"		"},
+		{"zh":"	plint405	","mm":"	123tsr1236567saca2	","my":"	WXr5ouI/76/Rw6YJrD2s7Z1ch/s=	","id":"	76561199246328481	","sf":"	iSIpG5Usk/FvagZf5o7MbbvotRw=	","lp":"		"},
+		{"zh":"	plint406	","mm":"	gfdasgfhsd1263671s	","my":"	AHLejxR4P0Bdb/53ZkWM7HZmp70=	","id":"	76561199246057861	","sf":"	XHE1nNG+Y1UdLdKRSC+4PhLVHlg=	","lp":"		"},
+		{"zh":"	plint411	","mm":"	jhasd12676171SsDAdas	","my":"	CkRJzvUuEYVPs5w0yy0xa8kOS84=	","id":"	76561199246189579	","sf":"	KwkGnCnJWYoJFIOQ+2jP77cAvVs=	","lp":"		"},
+		{"zh":"	plint412	","mm":"	dasre125643167sscasc	","my":"	zFP6N88dECmsVF/WYZ23utP4i0A=	","id":"	76561199246016492	","sf":"	R+J0yjpoSpnhjydTp2l5PkMHBGk=	","lp":"		"},
+		{"zh":"	plint605	","mm":"	fdasdgf1d23d1fsc	","my":"	kVmmPcTtC7OagbAqFm6NGgQ4wfA=	","id":"	76561199267191616	","sf":"	Lf6OxU2zLeGQr/gs3Yxaz+zR7IU=	","lp":"		"},
+		{"zh":"	plint606	","mm":"	dfgsafdgh1232hj1c	","my":"	wwDy2g6pz0ZD8AnyV81ezd7EWX0=	","id":"	76561199266483725	","sf":"	H9sKE8g1VPFF2/6pRZuJS9zZ4sU=	","lp":"		"},
+		{"zh":"	plint576	","mm":"	gjadshg1nbm2nm3bs1s	","my":"	nzU+MKG9dKfBECMksjHUZWGxyRs=	","id":"	76561199257832087	","sf":"	Tz9HOnBwJel93h91xJL0NCICv9I=	","lp":"		"},
+		{"zh":"	plint413	","mm":"	54as54d512ttrsac	","my":"	iEt47gXk/1jVfR3MctvB7yrIpEY=	","id":"	76561199246142887	","sf":"	cMfSAXooUz/+kX469My33M3oJRE=	","lp":"		"},
+		{"zh":"	plint467	","mm":"	ioio123io123898ascs	","my":"	XJDCGZtktsUUo6ityE3VHSfl3Io=	","id":"	76561199249764471	","sf":"	byHGmcfYWKReVlVMr1UsGy9ZsX8=	","lp":"		"},
+		{"zh":"	plint459	","mm":"	gfsatrdy67812378s1	","my":"	lwV7/dl2yV4wnXvlf4D/DAQ4qgo=	","id":"	76561199247827782	","sf":"	d40joJJKS4kpGEIoHCWZm0G9aQE=	","lp":"		"},
+		{"zh":"	plint460	","mm":"	hjsdj7817378123jksa	","my":"	1uZv/4mfRvcC+ZMSUkYxhwODt14=	","id":"	76561199248464146	","sf":"	13F1bZwlrDTDRadDpjDBMNzhROM=	","lp":"		"},
+		{"zh":"	plint461	","mm":"	hyt123ty162367sa7c	","my":"	mLg0LCv8W0eTAsps4lExcNY0rp8=	","id":"	76561199248386042	","sf":"	oa3EQAyLACARn49HNBx1wgiC6lQ=	","lp":"		"},
+		{"zh":"	plint470	","mm":"	fghasdhg1263781sc	","my":"	Kp6jjaDsgViJOlk1n+kWmhajgcI=	","id":"	76561199251248709	","sf":"	u7QNq2+Jhkh91XbwmrEE+IiFxe4=	","lp":"		"},
+		{"zh":"	plint471	","mm":"	hjasdnhjaksd781287	","my":"	j1zbAWvOoPpZ9zY3qOhcGJ1Nzo4=	","id":"	76561199250715347	","sf":"	d2W0AGBfCFzyjalb/MrySDTp5U=	","lp":"		"},
+		{"zh":"	plint469	","mm":"	jhkasdjk1287389sds	","my":"	pYubc3zTdKx2W8jQ3jyOXhGDRPk=	","id":"	76561199250560561	","sf":"	mAmyLhby8PexwUhgw6ektNujoLE=	","lp":"		"},
+		{"zh":"	plint468	","mm":"	dgfasdghfagdhs1287s	","my":"	oWhG/JX/PGnTTCkOo0WLmY12suA=	","id":"	76561199249987755	","sf":"	DCkq9dU7x+uy3aLorhGGUX3DkqQ=	","lp":"		"},
+		{"zh":"	plint450	","mm":"	65216531trystyas123	","my":"	rSafJFzAqKuvY0DRT/WEzSHc2SU=	","id":"	76561199248181893	","sf":"	c4SYE4PFj6fcaPSdkEk24WjwLRI=	","lp":"		"},
+		{"zh":"	plint443	","mm":"	cfbvcxbvnc2871871asa	","my":"	R43cbX7yyd36Ci6QPBTB/GbUvT4=	","id":"	76561199247123771	","sf":"	iOnjAG8P50pu+IBZAeWTvR2KFjM=	","lp":"		"},
+		{"zh":"	plint348	","mm":"	hjasjdahjds1s89289	","my":"	6XQ+6NaloGbe73gvbJk1xd/BnMU=	","id":"	76561199242144690	","sf":"	RvuVMvKVSR8z1oqF7jxXY3nc7UE=	","lp":"		"},
+		{"zh":"	plint400	","mm":"	ahsdygassdyut21783778	","my":"	HranmAe6r341EClHWRFS86tU6/w=	","id":"	76561199244763853	","sf":"	QcmcjYZysuztmHBpBuN9GVvAsnU=	","lp":"		"},
+		{"zh":"	plint472	","mm":"	ahsdhgasdyhg12783718	","my":"	SzE7J6R8Kl40LFpQOFYnr7l0fIk=	","id":"	76561199250718702	","sf":"	yvx71emmsOuV+nipxH5o1QWEHDg=	","lp":"		"},
+		{"zh":"	plint410	","mm":"	65123561trsad21s3sc	","my":"	kHZ6Oh9ektSkrQTuaRic26rxgMM=	","id":"	76561199246431055	","sf":"	nFhWVid+nRei7bPeUQYeUYMPZoE=	","lp":"		"},
+		{"zh":"	plint475	","mm":"	y1u23761327178sc2	","my":"	UnNJXPz0sy66TGr+jsocRPKCpSo=	","id":"	76561199251369983	","sf":"	NyzzPlxSHT2Mj0Dah6Ako2DD6kc=	","lp":"		"},
+		{"zh":"	plint476	","mm":"	hjashgd1283189ss	","my":"	YamXnKNPJnTGxoLXaOdFLb86v8Q=	","id":"	76561199250592911	","sf":"	Vzi+3kYPUCDEofuOch9pgT71z+U=	","lp":"		"},
+		{"zh":"	plint609	","mm":"	asdcf123s1fdgssfgd2	","my":"	yRnW2coySqv2/mI6vJiQJmQzEB8=	","id":"	76561199266966228	","sf":"	zxwEK1pZ47YPvAffD7sCIxREk60=	","lp":"		"},
+		{"zh":"	plint477	","mm":"	67123671ytuasyus2s	","my":"	U0/NDODWaE3yx2I5r7/OlMZEBsk=	","id":"	76561199250572165	","sf":"	ZK0krw81GfDMg2J2179+wHhcu6Q=	","lp":"		"},
+		{"zh":"	plint474	","mm":"	jhkasjd8192389123ysh	","my":"	P4gPqoNwXti5izpK8LqC0ekQGw8=	","id":"	76561199250394198	","sf":"	tXx0vvy6wPHL1RtipgCmdCWfzCk=	","lp":"		"},
+		{"zh":"	plint473	","mm":"	jasdh12673127sca2	","my":"	1UObXDaLRURxby5O5KyWY0XP7eY=	","id":"	76561199250807301	","sf":"	WU4az4wbyL/1h8CFWefWp1ykhDk=	","lp":"		"},
+		{"zh":"	plint607	","mm":"	gfhadsgfhdafd12s3c	","my":"	W8acmzWlioBmgRKJ5vmHzFC0ZdA=	","id":"	76561199267108647	","sf":"	tIAXM2PGrG2U/U9c96p3eeuc3PU=	","lp":"		"},
+		{"zh":"	plint628	","mm":"	gadsdc123fg1fgsc	","my":"	oKqxVbVVCGZ+V3xw9eI74agLnIY=	","id":"	76561199271181123	","sf":"	gLx58Y15BoxLRA2wSzyTwgi2d9c=	","lp":"		"},
+		{"zh":"	plint641	","mm":"	hgadsghffgh123h1sc	","my":"	2E9rigU8VSmE6HWU2+BM8OPDvXI=	","id":"	76561199272348727	","sf":"	WH3LhWnekZJRN9jggyTKBCjcXQ0=	","lp":"		"},
+		{"zh":"	plint640	","mm":"	fgsafgdgh12g3f1dfsc	","my":"	U7CcwlWqthjPISG1qPAEQb9BxBs=	","id":"	76561199272109677	","sf":"	anxLTyzpT59uQjKEFDRvHj7AZ8c=	","lp":"		"},
+		{"zh":"	geoulogsbinlo1983	","mm":"	ue28232cb	","my":"	bYYhePFcMsb643NNBok9SPIf+Ak=	","id":"	76561199188484474	","sf":"	j579ScdfeyHqYTmPgZxdTvzlLZI=	","lp":"		"},
+		{"zh":"	mattdavidson80	","mm":"	3gihukjmu	","my":"	0HvqOcJE6oqZP3dAA2DVaYCzDeM=	","id":"	76561199188960164	","sf":"	pu1PgBFR1purHmMmNNcDDlACFbs=	","lp":"		"},
+		{"zh":"	deoneemure1984	","mm":"	rkwaafeao	","my":"	M+V0kNEUIeqAVHUakMgqvdzfCPg=	","id":"	76561199188804953	","sf":"	3OmTFtWdiPMl3RhxRsp8CZpiE/8=	","lp":"		"},
+		{"zh":"	tiwordena1972	","mm":"	hx368g57zp	","my":"	Og99DL6d65LQ5Bn4XbMonWrBd4M=	","id":"	76561199188293786	","sf":"	apFuidRUAuxi69oufrzlZ3TFUwE=	","lp":"		"},
+		{"zh":"	stephanieabrahams96	","mm":"	p8feuurh	","my":"	rWwDx9CBfd7BecwZSb0Hja+WVo0=	","id":"	76561199189026395	","sf":"	dpG2e7QLfT68TrQMtHKEYEBm7QQ=	","lp":"		"},
+		{"zh":"	passpunfuta1974	","mm":"	blalze0s	","my":"	xjRT/jlCljsa0KI4EVGZ1wG69So=	","id":"	76561199188389589	","sf":"	f4NqfTx1S5eyEO8towYxckvi7/o=	","lp":"		"},
+		{"zh":"	shannonsanchez4c	","mm":"	1i743dh1a	","my":"	AL8GfTyqkxRyzGqp84rWIjD4hKw=	","id":"	76561199189003301	","sf":"	zsE+V4mZTh7784c4oIdXV8CJFXQ=	","lp":"		"},
+		{"zh":"	scotdolnonsmi1977	","mm":"	qtsr3mr1xy	","my":"	InYPaixw58kdl2aQUzgr7VHwDPg=	","id":"	76561199189276321	","sf":"	P46IN8bcaECxgzQGCDHiSgD4rTk=	","lp":"		"},
+		{"zh":"	unborbapan1980	","mm":"	gd3jt3a048	","my":"	ecgi9P7VL2XJkRjuqOyYPk6zs1I=	","id":"	76561199188560392	","sf":"	7Q5KksVsnSWiM3270BBSVma0eas=	","lp":"		"},
+		{"zh":"	melissamoore5r	","mm":"	a66m6w9wi	","my":"	IU0eReWNf8kLapIvIdzEN23qLxY=	","id":"	76561199188782371	","sf":"	GcUka+f+qLIxs/Fy8ejoNww9nzw=	","lp":"		"},
+		{"zh":"	icsairilgu1975	","mm":"	o90al00dad	","my":"	SgKIxVd6/dIJJP1DnlCxL/bOF9A=	","id":"	76561199188442336	","sf":"	EHdR+nHM7vQHAg08jbxI+m7q/NY=	","lp":"		"},
+		{"zh":"	faimedekalf1985	","mm":"	2fy7fw38	","my":"	qKkETs4uTfCNGp8YgIkwTNpQ+dQ=	","id":"	76561199188735325	","sf":"	zr5MXoSknb3crl9TQ3nLdR9dMDo=	","lp":"		"},
+		{"zh":"	jargingzati1972	","mm":"	xkfrrqur02	","my":"	Zr63jULWtbfALLJ1dYFvFRficF4=	","id":"	76561199188169890	","sf":"	7S86vITYToy7g8MO/J1d9YvOKWg=	","lp":"		"},
+		{"zh":"	phrasinvara1973	","mm":"	auwsb8m72w	","my":"	Xn0nuosZCF4IxMtTsCj7X1VlSgE=	","id":"	76561199188856157	","sf":"	+Yc4b6iutYr9rtPvTggMtW89NjQ=	","lp":"		"},
+		{"zh":"	elmitcyclbliz1986	","mm":"	prsi29xj4	","my":"	hcED/K3cmWxMBwgSPUIxj+VwFqE=	","id":"	76561199188570378	","sf":"	lYjZlgPHgYe4YkqP/TD0YnIru/o=	","lp":"		"},
+		{"zh":"	gregwallach85	","mm":"	lc9bpylo13	","my":"	eBhW+I4l7LWglKDlpIp3UNo+vSE=	","id":"	76561199188481860	","sf":"	2jcHhB783adyQ2XrCSrA7nvhv2s=	","lp":"		"},
+		{"zh":"	beckyharrell87	","mm":"	wwzn1gn3ui	","my":"	5Kr/oz0cza334r50E7vmh2c1DaY=	","id":"	76561199188341317	","sf":"	Nf7FX9ngag+H1PUGrTHpPkEagfA=	","lp":"		"},
+		{"zh":"	franertwisov1978	","mm":"	wedklk141	","my":"	wUIt8ABWxGyjLrp4+fNnl/1T/Vo=	","id":"	76561199188653531	","sf":"	9CjutdivmUqVdvt5a4aqjQja8CM=	","lp":"		"},
+		{"zh":"	joshendricko8d	","mm":"	4rd23h33k	","my":"	bnXj6D2aPKaifSJOXnJocjIZHFA=	","id":"	76561199188502660	","sf":"	jepS6Xt173lK1YDPgGljmNAbsg0=	","lp":"		"},
+		{"zh":"	tedgraveline4x	","mm":"	54xp8a9r	","my":"	/Lygq5jG5KoUxJBljTsamqMOvfs=	","id":"	76561199188709558	","sf":"	O4P6UPMJV6vRusd8cQ5iFlgQ0t4=	","lp":"		"},
+		{"zh":"	acoltacon1981	","mm":"	ctejwc8vc	","my":"	Yoe4QY68hUWH2yTx14NDXY76pfw=	","id":"	76561199188740786	","sf":"	w4nr+dtjvk9ySK6qgxfPtw99ODM=	","lp":"		"},
+		{"zh":"	matthewwright3b	","mm":"	6kyqgkkpq	","my":"	+JPHWyQSnUDYPEktHoel9Exq6kM=	","id":"	76561199188741184	","sf":"	ze0uHnaV3yxPCa5bI8YxGwsohVY=	","lp":"		"},
+		{"zh":"	smalanriasi1975	","mm":"	jbhxehngm	","my":"	btelXQFpxN7l7kT8I139smYK9pc=	","id":"	76561199188518488	","sf":"	g6prn5HGXcNKhpPy+mWNTug/ZrU=	","lp":"		"},
+		{"zh":"	plint602	","mm":"	agsdfg12sfd3sf1sc	","my":"	PKIwcrpclvw7YTxyqX48bPHphYA=	","id":"	76561199267158621	","sf":"	X1adfVfFIYy6k+tmaisQQuJQxB8=	","lp":"		"},
+		{"zh":"	plint603	","mm":"	fasdfgh123hj1hj3sc	","my":"	MsMPfN1GV2QWselPM4bQsP0tGgY=	","id":"	76561199267397749	","sf":"	wyDfHgCT3ONEYKeXDR+XBEQAWwY=	","lp":"		"},
+		{"zh":"	lielopulra1982	","mm":"	d20lw2okae	","my":"	D8zE7Vvj26eAxCU1soIEP5+zm0k=	","id":"	76561199188372682	","sf":"	dE+TBHhy20UVTzff0ky35HJUNuw=	","lp":"		"},
+		{"zh":"	falneudijer1981	","mm":"	j0q30kznrx	","my":"	/WzPqDQz7AZ6Q+Pe5W4dzeSNQR8=	","id":"	76561199189111281	","sf":"	pSLSqMtlxeH0i5aZH60qv5qIQ+c=	","lp":"		"},
+		{"zh":"	upewrmelbe1980	","mm":"	406d9vhe	","my":"	1NkBYmXwUI8kZD0Qe963HhOoVTc=	","id":"	76561199188826347	","sf":"	Rn2jEyEvJP/hZHOPAs/FWj2auwg=	","lp":"		"},
+		{"zh":"	davidhutchinson81	","mm":"	y4nzywph	","my":"	zpqoY6Ov0zit1oxZt7PZ++9mFds=	","id":"	76561199188598164	","sf":"	XbpYPqc/ex1hfQFoDtF/o83ahmI=	","lp":"		"},
+		{"zh":"	jessicagoslin3q	","mm":"	gzknll6or	","my":"	Xpbe4E8akFx91UHCkg8zc0QZCKw=	","id":"	76561199188635899	","sf":"	8TdhZkB75uaUYmJVIyNLV9hKeds=	","lp":"		"},
+		{"zh":"	totybane1972	","mm":"	mjbu8lndv0	","my":"	iSTFyKq/Ml+Hzd5uouevlG94asA=	","id":"	76561199188686802	","sf":"	vAB4GJlmqf02kiyINGd9vAskw5Y=	","lp":"		"},
+		{"zh":"	shanebravo90	","mm":"	m9vc6j3wr	","my":"	g7Q1lyIcpD4/g2pGLMy/4Nv56pU=	","id":"	76561199188608901	","sf":"	LFkwoJLJ89l0B4xutYuzC902ZdA=	","lp":"		"},
+		{"zh":"	vowerslates1988	","mm":"	4l439e0n	","my":"	1WqtwVPWGfpGlthjzxZc6XJbLSc=	","id":"	76561199188719505	","sf":"	0gUAShrSOQhCWpmzR9FluyXYopk=	","lp":"		"},
+		{"zh":"	siogereres1987	","mm":"	m1f0o3zl	","my":"	wPPWh6SVV6loSaoyMDg6AKlmdIA=	","id":"	76561199189006654	","sf":"	X5UrEgH7NotQ2bCxLyJWKoCQkN8=	","lp":"		"},
+		{"zh":"	inbiphomen1980	","mm":"	ho3wr2jlo6	","my":"	RK3SDhxODlpJLDA3ittQEfHT9qo=	","id":"	76561199188848811	","sf":"	PSC0rMQzP1+Co7L4+eyQghM9Z8Y=	","lp":"		"},
+		{"zh":"	dionkallimanis86	","mm":"	r1wmsrld	","my":"	VyCrPOYE+r1qHkX6pKvzcil/A78=	","id":"	76561199188708037	","sf":"	bjWECy+Z1en84CRhzORFRDchD44=	","lp":"		"},
+		{"zh":"	plint687	","mm":"	gfadsgfdabvbv12b31	","my":"	+2vrkVsCUZjzN0TV04XmU1AG80k=	","id":"	76561199274433940	","sf":"	GxjKYcJWPo450S1whARXSLW0/HI=	","lp":"		"},
+		{"zh":"	plint660	","mm":"	67123tr1gfhsacujheu21	","my":"	zkeOKFAFKj/HElrXjQ/Ikd29rGU=	","id":"	76561199273245786	","sf":"	Uh5KZfnehGqGvM8Zm2yGcHt/Ics=	","lp":"		"},
+		{"zh":"	plint618	","mm":"	cvbasdg1231yytucsc	","my":"	7e4WxA8tXAXIta1CjBHEcRe8Kzk=	","id":"	76561199267337718	","sf":"	NHBRPGGipYzY9GAvT/CtF74iiMA=	","lp":"		"},
+		{"zh":"	plint616	","mm":"	ghyt676767yjk1231	","my":"	BdA/XGi3moK6CwuDC77Ezwf82BI=	","id":"	76561199267534493	","sf":"	ixFiUDERoOV7A8h6pbM92ACVL38=	","lp":"		"},
+		{"zh":"	plint646	","mm":"	dgadgfsfdd1f2gfhsc	","my":"	JZBnyy2QJaU2DLelXPQGM2/5q+Q=	","id":"	76561199272441228	","sf":"	g9oguEknoSCi1YHjcXZWCYEGCBU=	","lp":"		"},
+		{"zh":"	plint643	","mm":"	ghashgdgfhasdfgd123	","my":"	kPBJyTx8yObHA2zpAlzNZFpWDaY=	","id":"	76561199272527460	","sf":"	r7BfuPAS2USyTXSRxnK85Oh1oI4=	","lp":"		"},
+		{"zh":"	inupletso1977	","mm":"	agcrm86vd0	","my":"	bY0NJA7iNniIll8jyBFgKr4PPVI=	","id":"	76561199188568613	","sf":"	mCDfFIfc+bTYmMwTP1IihRH745s=	","lp":"		"},
+		{"zh":"	olsorpayspid1970	","mm":"	mga961nq	","my":"	ayzO0JPnxbcdOgt0euEQMD5vBak=	","id":"	76561199188836490	","sf":"	B8RLVlZra2r18Fw5m5vsLB9fB+g=	","lp":"		"},
+		{"zh":"	ovdeausinte1979	","mm":"	5ttz9mu6ho	","my":"	HLKA2aSahmSOgEpiNJhwAvMQOh4=	","id":"	76561199188836118	","sf":"	gAybQGmwz7Zkamqs0ln8t4owjno=	","lp":"		"},
+		{"zh":"	dpapthenimes1987	","mm":"	95l520ex	","my":"	r7EABW5pgNdp6CDZ79hFUjG0qCE=	","id":"	76561199189057064	","sf":"	wF0yGGl0pJBbbfa9R2YmZG2PpBc=	","lp":"		"},
+		{"zh":"	boldiocysma1983	","mm":"	g7fwmhx6	","my":"	VRP6AnKCwT1dpsoH5wquQIQRmJE=	","id":"	76561199188735301	","sf":"	CYNVJPzBBgvVWG1Fzfnx38dcSXg=	","lp":"		"},
+		{"zh":"	vietanliaku1979	","mm":"	k9u9ui4q	","my":"	T9ACV5ExoA0FsNR6v8RXfbxF3XY=	","id":"	76561199188758482	","sf":"	bkJf0IFwW+x//DcYLnezHISDLV0=	","lp":"		"},
+		{"zh":"	pebbrucmimar1973	","mm":"	ob5fk8u7q	","my":"	3yG+G7HRFbJ3bwEjrg+8sO+kBok=	","id":"	76561199188679570	","sf":"	AQ5/JhjbHPhuZ6Q1YCLNLT0g8zE=	","lp":"		"},
+		{"zh":"	amefvena1989	","mm":"	7wi5qp11l	","my":"	wNbuBbWlyPdjt623YPDxlworU7M=	","id":"	76561199188923383	","sf":"	970FFL0Ok6z1XlSAsBJECvsumMw=	","lp":"		"},
+		{"zh":"	quirenubar1974	","mm":"	zohy95nuo	","my":"	K59+gSo304+lgY779mAWzUQkZbU=	","id":"	76561199189116331	","sf":"	bjYHTTlPBCxHRnJNQPrSWX+uL9w=	","lp":"		"},
+		{"zh":"	opalrivera83	","mm":"	nqnilj93dg	","my":"	KtB5xvDPVTEd6FLTkCZKaWUNtig=	","id":"	76561199188821025	","sf":"	gqkqCgjhV+cvDYA319fai5ItuPc=	","lp":"		"},
+		{"zh":"	erjawargeo1985	","mm":"	zaz7i0csw	","my":"	jGon1SXeGmKuhT0wyE8JHYeMl24=	","id":"	76561199188548457	","sf":"	8zFPIw4ItxC6Z5LPEiC8xeR0LDk=	","lp":"		"},
+		{"zh":"	sherryjohnson88	","mm":"	zjryqb8q	","my":"	oQHc4MF67ZIUs1I7wVJ4Am0zct4=	","id":"	76561199188523881	","sf":"	4EyyC2JgaD/R5IX8opfltc55RQ8=	","lp":"		"},
+		{"zh":"	chrissriubas91	","mm":"	t1vlt3s55	","my":"	U6baGRWQsgvgNyUuxB8oRRxnVI8=	","id":"	76561199188387414	","sf":"	jI04Ng9XzhPY9nBGuZqBwZRqYHA=	","lp":"		"}
+		
+				]
+	
+	layui.use('table', function(){
+	  var table = layui.table;
+	  //第一个实例
+	  table.render({
+	    elem: '#demo'
+	    ,height: 5000
+	    ,data:  lingp //数据接口
+	    ,page: false //开启分页
+	    ,cols: [[ //表头
+	      {field: 'zh', title: 'STEAM账号', width:160, sort: true, fixed: 'left'}
+	      ,{field: 'mm', title: 'STEAM密码', width:160}
+	      ,{field: 'my', title: '共享密钥64位', width:160, sort: true}
+	      ,{field: 'id', title: 'STEAM ID', width:160} 
+	      ,{field: 'sf', title: '身份密钥', width: 160}
+	      ,{field: 'lp', title: '令牌', width: 160, sort: true},
+		  ,{fixed: 'right',title: '操作', width:90, align:'center', toolbar: '#barDemo'}
+	    ]]
+	  });
+	  
+	  //工具条事件
+	  table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+	    var data = obj.data; //获得当前行数据
+	    var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+	    var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+	   
+	    if(layEvent === 'detail'){ //查看
+		
+	      //do somehing
+	  	var x=generateAuthCode(data.my,0)
+		obj.update({
+		      lp: x
+		    });
+		navigator.clipboard.writeText(x);
+		layer.msg('令牌已复制', {icon: 1});
+	    } 
+	  });
+	  
+	});
+	
+	
+	</script>
+
+</html>
