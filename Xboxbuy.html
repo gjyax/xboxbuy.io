@@ -18,13 +18,13 @@
 					v2=v1*1.25;
 					
 				}else if(v1<150&&v1>=101){
-					v2=v1*37.1552*2*0.0148+15;
+					v2=v1*37.4057*2*0.0148+15;
 					
 				}else if(v1<200&&v1>=150){
-					v2=v1*37.1552*2*0.0148+15;
+					v2=v1*37.4057*2*0.0148+15;
 					
 				}else if(v1>=200){
-					v2=v1*37.1552*2*0.0148+15;
+					v2=v1*37.4057*2*0.0148+15;
 					
 				}
 				
@@ -37,17 +37,17 @@
 				var t1=Number(t1);
 				var t2=0;
 				if(t1<10){
-					t2=t1*3.6665*0.35;
+					t2=t1*3.74863*0.35+2;
 					
-				}else if(t1<30&&t1>=10){
-					t2=t1*3.6665*0.35;
-				}else if(t1>=30){
-					t2=t1*3.6665*0.35;
+				}else if(t1<20&&t1>=10){
+					t2=t1*3.74863*0.35+2;
+				}else if(t1>=20){
+					t2=t1*3.74863*0.35;
 		
 				}
 
 				if(t2>t1*3.6665*0.285+15){
-					t2=t1*3.6665*0.285+15;
+					t2=t1*3.74863*0.285+15;
 				}
 				
 				document.getElementById("t2").value=t2;
@@ -56,7 +56,7 @@
 		
 	</head>
 	<body>
-		<p>7月17日最新</p>
+		<p>7月21日最新</p>
 		<br><br>
 		<h1 align="center"> Xbox阿根廷代购价格</h1>
 		<br>
@@ -121,9 +121,13 @@
 					<td align="center"><input id="tuerk" style="font-size:1em;color:#ff0000" type="button" value="换算" onclick="tuer()"></td>
 					<td><input style="height:25px;font-size:1em;color:#ff0000;" id="t2" type="text" size="9" ></td>
 				</tr>
-		
+
+				<tr >
+					<td>20以下 代购价格</td>
+					<td>比价助手✖1.25+2</td>
+				</tr>
 				<tr>
-					<td>代购价格:</td>
+					<td>其他代购价格:</td>
 					<td>里拉✖0.35</td>
 				</tr>
 				<tr>
