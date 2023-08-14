@@ -10,17 +10,17 @@
 				var v1=Number(v1);
 				var v2=0;
 				if(v1<400){
-					v2=v1*2.0102*0.0125+2;
+					v2=v1*2.0102*0.0122+2;
 				}else if(v1<1200&&v1>=400){
-					v2=v1*2.0102*0.0125+3;
+					v2=v1*2.0102*0.0122+3;
 				}else if(v1<2800&&v1>=1200){
-					v2=v1*2.0102*0.0125+5;
+					v2=v1*2.0102*0.0122+5;
 					
 				}else if(v1<4000&&v1>=2800){
-					v2=v1*2.0102*0.0125+7;
+					v2=v1*2.0102*0.0122+5;
 					
 				}else if(v1>=4000){
-					v2=v1*2.0102*0.0125+10;
+					v2=v1*2.0102*0.0122+7;
 					
 				}
 				
@@ -32,18 +32,18 @@
 			    var t1=document.getElementById("t1").value;
 				var t1=Number(t1);
 				var t2=0;
-				if(t1<10){
-					t2=t1*3.7473*0.308+2;
+				if(t1<40){
+					t2=t1*0.308+2;
 					
-				}else if(t1<20&&t1>=10){
-					t2=t1*3.7473*0.308+2;
-				}else if(t1>=20){
-					t2=t1*3.7473*0.308;
+				}else if(t1<80&&t1>=40){
+					t2=t1*0.308+2;
+				}else if(t1>=80){
+					t2=t1*0.308;
 		
 				}
 
-				if(t2>t1*3.6665*0.285+15){
-					t2=t1*3.7473*0.285+15;
+				if(t2>t1*0.285+15){
+					t2=t1*0.285+15;
 				}
 				
 				document.getElementById("t2").value=t2;
@@ -73,26 +73,21 @@
 					<td align="center"><input id="huansuan" style="font-size:1em;color:#ff0000" type="button" value="换算" onclick="myjs()"></td>
 					<td><input style="height:25px;font-size:1em;color:#ff0000;" id="v2" type="text" size="9" ></td>
 				</tr>
-
 				<tr>
 					<td>0-400ARS 代购价格:</td>
-					<td>ARS✖2.0102✖0.0125+2</td>
+					<td>ARS✖2.0102✖0.0122+2</td>
 				</tr>
 				<tr>
 					<td>400-1200ARS 代购价格:</td>
-					<td>ARS✖2.0102✖0.0125+3</td>
+					<td>ARS✖2.0102✖0.0122+3</td>
 				</tr>
 				<tr >
-					<td>1200-2800ARS 代购价格:</td>
-					<td>ARS✖2.0102✖0.0125+5</td>
-				</tr>
-				<tr >
-					<td>2800-4000ARS 代购价格:</td>
-					<td>ARS✖2.0102✖0.0125+7</td>
+					<td>1200-4000ARS 代购价格:</td>
+					<td>ARS✖2.0102✖0.0122+5</td>
 				</tr>
 				<tr>
 					<td>4000ARS以上    代购价格</td>
-					<td>ARS✖2.0102✖0.0125+10</td>
+					<td>ARS✖2.0102✖0.0122+7</td>
 				</tr>
 
 			</table>
@@ -112,7 +107,7 @@
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
-					<td>比价助手价格</td>
+					<td>土耳其价格TL</td>
 					<td>&nbsp;</td>
 					<td>代购价格</td>
 				</tr>
@@ -123,16 +118,16 @@
 				</tr>
 
 				<tr >
-					<td>20以下 代购价格</td>
-					<td>里拉✖0.308+2</td>
+					<td>80TL以下 代购价格</td>
+					<td>TL✖0.308+2</td>
 				</tr>
 				<tr>
 					<td>其他代购价格:</td>
-					<td>里拉✖0.308</td>
+					<td>TL✖0.308</td>
 				</tr>
 				<tr>
 					<td>代购价格上限 </td>
-					<td>里拉✖0.285+15</td>
+					<td>TL✖0.285+15</td>
 				</tr>
 				
 
