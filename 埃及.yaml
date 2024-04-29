@@ -21,11 +21,133 @@ proxies:
   - {name: 埃及3, server: 106.75.152.119, port: 1002, username: 46970743-05c401c0-rand, password: wifi-eg---, type: socks5, skip-cert-verify: false}
   - {name: 埃及4, server: 106.75.152.119, port: 1003, username: 46970743-05c401c0-rand, password: wifi-eg---, type: socks5, skip-cert-verify: false}
   - {name: 埃及5, server: 106.75.152.119, port: 1004, username: 46970743-05c401c0-rand, password: wifi-eg---, type: socks5, skip-cert-verify: false}
+  - { name: "主线路", type: vmess, server: 13.57.37.111, port: 1000, uuid: b343e4e9-ebda-494e-feaa-7c2735d6374b, alterId: 0, cipher: auto, network: tcp}
 
 
 proxy-groups:
+  - { name: "代理", type: select, proxies: [主线路]}
   - { name: "埃及(买的1G流量)", type: select, proxies: [埃及1,埃及2,埃及3,埃及4,埃及5]}
+  - { name: "Googleplay2", type: select, proxies: ["代理",Googleplay]}
 
 
 rules:
-
+  - DOMAIN,accounts.google.com,代理
+  - IP-CIDR,208.95.112.1/32,Googleplay
+  - DOMAIN,ip-api.com,Googleplay
+  - DOMAIN,ip.skk.moe,Googleplay
+  - DOMAIN-SUFFIX,ipapi.co,Googleplay
+  - DOMAIN-SUFFIX,ip-api.com,Googleplay
+  - DOMAIN-SUFFIX,api.ip.sb,Googleplay
+  - DOMAIN-SUFFIX,IPInfo.io,Googleplay
+  - DOMAIN-SUFFIX,ipip.net,Googleplay
+  - DOMAIN-SUFFIX,skk.moe,Googleplay
+  - DOMAIN-KEYWORD,game,代理
+  - DOMAIN-KEYWORD,gvt1,代理
+  - DOMAIN-KEYWORD,googlevideo.com,代理
+  - DOMAIN-KEYWORD,lra8j.com,DIRECT
+  - DOMAIN-KEYWORD,cn,DIRECT
+  - DOMAIN,play-fe.googleapis.com,Googleplay
+  - DOMAIN,play.googleapis.com,Googleplay
+  - IP-CIDR,172.217.160.110/32,Googleplay
+  - IP-CIDR,172.217.163.46/32,Googleplay
+  - IP-CIDR,172.217.160.78/32,Googleplay
+  - IP-CIDR,142.251.42.238/32,Googleplay
+  - IP-CIDR,142.251.43.14/32,Googleplay
+  - IP-CIDR,142.251.220.77/32,Googleplay
+  - IP-CIDR,142.251.42.237/32,Googleplay
+  - IP-CIDR,172.217.163.45/32,Googleplay
+  - IP-CIDR,142.250.204.78/32,Googleplay
+  - IP-CIDR,142.250.66.142/32,Googleplay
+  - DOMAIN-SUFFIX,1password.com,DIRECT
+  - DOMAIN-SUFFIX,vultr.com,DIRECT
+  - DOMAIN-SUFFIX,mb3admin.com,DIRECT
+  - DOMAIN-SUFFIX,rixcloud.io,DIRECT
+  - DOMAIN-SUFFIX,tempestapp.io,DIRECT
+  - DOMAIN-SUFFIX,baidu.com,DIRECT
+  - DOMAIN-SUFFIX,baidu-int.com,DIRECT
+  - DOMAIN-SUFFIX,erebor.douban.com,DIRECT
+  - DOMAIN,mtalk.google.com,DIRECT
+  - DOMAIN,alt1-mtalk.google.com,DIRECT
+  - DOMAIN,alt2-mtalk.google.com,DIRECT
+  - DOMAIN,alt3-mtalk.google.com,DIRECT
+  - DOMAIN,alt4-mtalk.google.com,DIRECT
+  - DOMAIN,alt5-mtalk.google.com,DIRECT
+  - DOMAIN,alt6-mtalk.google.com,DIRECT
+  - DOMAIN,alt7-mtalk.google.com,DIRECT
+  - DOMAIN,alt8-mtalk.google.com,DIRECT
+  - DOMAIN,alt9-mtalk.google.com,DIRECT
+  - DOMAIN,captive.apple.com,DIRECT
+  - DOMAIN,time-ios.apple.com,DIRECT
+  - DOMAIN-SUFFIX,gateway.push-apple.com.akadns.net,DIRECT
+  - DOMAIN-SUFFIX,push.apple.com,DIRECT
+  - DOMAIN-KEYWORD,github,代理
+  - DOMAIN-SUFFIX,github.com,代理
+  - DOMAIN-SUFFIX,github.io,代理
+  - DOMAIN-SUFFIX,githubapp.com,代理
+  - DOMAIN-SUFFIX,githubassets.com,代理
+  - DOMAIN-SUFFIX,githubusercontent.com,代理
+  - DOMAIN-SUFFIX,home-intl.console.aliyun.com,代理
+  - DOMAIN,ip.skk.moe,代理
+  - DOMAIN,ip.sb,代理
+  - DOMAIN-SUFFIX,googleapis.cn,代理
+  - DOMAIN-SUFFIX,maying.co,代理
+  - DOMAIN-SUFFIX,flowercloud.net,代理
+  - DOMAIN-SUFFIX,socloud.me,代理
+  - DOMAIN-SUFFIX,ytoo.asia,代理
+  - DOMAIN-SUFFIX,ytoo.co.uk,代理
+  - DOMAIN-KEYWORD,youtube,Googleplay2
+  - DOMAIN-SUFFIX,youtu.be,Googleplay2
+  - DOMAIN-SUFFIX,googlevideo.com,Googleplay2
+  - DOMAIN-SUFFIX,ytimg.com,Googleplay2
+  - DOMAIN-SUFFIX,ggpht.com,Googleplay2
+  - DOMAIN-SUFFIX,gvt2.com,Googleplay2
+  - IP-CIDR,172.217.0.0/16,Googleplay2,no-resolve
+  - IP-CIDR,74.125.0.0/16,Googleplay2,no-resolve
+  - IP-CIDR,64.233.160.0/19,Googleplay2,no-resolve
+  - IP-CIDR,142.250.0.0/15,Googleplay2,no-resolve
+  - IP-CIDR,216.58.192.0/18,Googleplay2,no-resolve
+  - DOMAIN-KEYWORD,netflix,Googleplay2
+  - DOMAIN-SUFFIX,fast.com,Googleplay2
+  - DOMAIN-SUFFIX,maying.co,Googleplay2
+  - DOMAIN-SUFFIX,nflxext.com,Googleplay2
+  - DOMAIN-SUFFIX,nflximg.com,Googleplay2
+  - DOMAIN-SUFFIX,nflximg.net,Googleplay2
+  - DOMAIN-SUFFIX,nflxso.net,Googleplay2
+  - DOMAIN-SUFFIX,nflxvideo.net,Googleplay2
+  - IP-CIDR,23.246.0.0/18,Googleplay2,no-resolve
+  - IP-CIDR,37.77.184.0/21,Googleplay2,no-resolve
+  - IP-CIDR,45.57.0.0/17,Googleplay2,no-resolve
+  - IP-CIDR,64.120.128.0/17,Googleplay2,no-resolve
+  - IP-CIDR,66.197.128.0/17,Googleplay2,no-resolve
+  - IP-CIDR,108.175.32.0/20,Googleplay2,no-resolve
+  - IP-CIDR,192.173.64.0/18,Googleplay2,no-resolve
+  - IP-CIDR,198.38.96.0/19,Googleplay2,no-resolve
+  - IP-CIDR,198.45.48.0/20,Googleplay2,no-resolve
+  - IP-CIDR,8.41.4.0/24,Googleplay2,no-resolve
+  - IP-CIDR,69.53.224.0/19,Googleplay2,no-resolve
+  - IP-CIDR,185.2.220.0/22,Googleplay2,no-resolve
+  - IP-CIDR,185.9.188.0/22,Googleplay2,no-resolve
+  - IP-CIDR,207.45.72.0/22,Googleplay2,no-resolve
+  - IP-CIDR,208.75.76.0/22,Googleplay2,no-resolve
+  - DOMAIN-SUFFIX,t.me,Googleplay2
+  - DOMAIN-SUFFIX,tdesktop.com,Googleplay2
+  - DOMAIN-SUFFIX,telegra.ph,Googleplay2
+  - DOMAIN-SUFFIX,telegram.me,Googleplay2
+  - DOMAIN-SUFFIX,telegram.org,Googleplay2
+  - IP-CIDR,91.108.4.0/22,Googleplay2,no-resolve
+  - IP-CIDR,91.108.8.0/22,Googleplay2,no-resolve
+  - IP-CIDR,91.108.12.0/22,Googleplay2,no-resolve
+  - IP-CIDR,91.108.16.0/22,Googleplay2,no-resolve
+  - IP-CIDR,91.108.56.0/22,Googleplay2,no-resolve
+  - IP-CIDR,91.108.56.0/23,Googleplay2,no-resolve
+  - IP-CIDR,109.239.140.0/24,Googleplay2,no-resolve
+  - IP-CIDR,149.154.160.0/20,Googleplay2,no-resolve
+  - IP-CIDR,149.154.160.0/22,Googleplay2,no-resolve
+  - IP-CIDR,149.154.164.0/22,Googleplay2,no-resolve
+  - IP-CIDR,149.154.168.0/22,Googleplay2,no-resolve
+  - IP-CIDR,149.154.172.0/22,Googleplay2,no-resolve
+  - IP-CIDR6,2001:b28:f23d::/48,Googleplay2,no-resolve
+  - IP-CIDR6,2001:b28:f23f::/48,Googleplay2,no-resolve
+  - IP-CIDR6,2001:67c:4e8::/48,Googleplay2,no-resolve
+  - GEOIP,CN,DIRECT
+  - MATCH,代理
