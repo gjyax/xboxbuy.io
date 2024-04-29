@@ -1,0 +1,40 @@
+port: 10100
+socks-port: 10101
+allow-lan: true
+mode: Rule
+log-level: info
+external-controller: :9090
+dns:
+  enabled: true
+  nameserver:
+  - 119.29.29.29
+  - 223.5.5.5
+  fallback:
+  - 8.8.8.8
+  - 8.8.4.4
+  - tls://1.0.0.1:853
+  - tls://dns.google:853
+  
+proxies:
+  - {name: 尼日1, server: 106.75.152.119, port: 1000, username: 46970743-05c401c0-rand, password: wifi-ng---, type: socks5, skip-cert-verify: false}
+  - {name: 尼日2, server: 106.75.152.119, port: 1001, username: 46970743-05c401c0-rand, password: wifi-ng---, type: socks5, skip-cert-verify: false}
+  - {name: 尼日3, server: 106.75.152.119, port: 1002, username: 46970743-05c401c0-rand, password: wifi-ng---, type: socks5, skip-cert-verify: false}
+  - {name: 尼日4, server: 106.75.152.119, port: 1003, username: 46970743-05c401c0-rand, password: wifi-ng---, type: socks5, skip-cert-verify: false}
+  - {name: 尼日5, server: 106.75.152.119, port: 1004, username: 46970743-05c401c0-rand, password: wifi-ng---, type: socks5, skip-cert-verify: false}
+  - {name: 尼日6, server: 106.75.152.119, port: 1005, username: 46970743-05c401c0-rand, password: wifi-ng---, type: socks5, skip-cert-verify: false}
+  - {name: 尼日7, server: 106.75.152.119, port: 1006, username: 46970743-05c401c0-rand, password: wifi-ng---, type: socks5, skip-cert-verify: false}
+  - {name: 尼日8, server: 106.75.152.119, port: 1007, username: 46970743-05c401c0-rand, password: wifi-ng---, type: socks5, skip-cert-verify: false}
+  - {name: 尼日9, server: 106.75.152.119, port: 1008, username: 46970743-05c401c0-rand, password: wifi-ng---, type: socks5, skip-cert-verify: false}
+  - {name: 尼日10, server: 106.75.152.119, port: 1009, username: 46970743-05c401c0-rand, password: wifi-ng---, type: socks5, skip-cert-verify: false}
+
+
+
+
+proxy-groups:
+  - { name: "尼日利亚(买的1G流量)", type: select, proxies: [尼日1,尼日2,尼日3,尼日4,尼日5,尼日6,尼日7,尼日8,尼日9,尼日10]}
+
+
+
+
+
+rules:
