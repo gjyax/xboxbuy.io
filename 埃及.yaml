@@ -28,9 +28,4 @@ proxy-groups:
 
 
 rules:
-  - DOMAIN,myaccount.google.com,Googleplay 
-  - DOMAIN,accounts.google.com,Googleplay
-  - DOMAIN,play.googleapis.com,Googleplay
-  - DOMAIN,play-fe.googleapis.com,Googleplay
-  - DOMAIN-SUFFIX,IPInfo.io,谷歌
-  - MATCH,代理
+
