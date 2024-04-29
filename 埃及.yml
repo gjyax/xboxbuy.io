@@ -1,0 +1,36 @@
+port: 10100
+socks-port: 10101
+allow-lan: true
+mode: Rule
+log-level: info
+external-controller: :9090
+dns:
+  enabled: true
+  nameserver:
+  - 119.29.29.29
+  - 223.5.5.5
+  fallback:
+  - 8.8.8.8
+  - 8.8.4.4
+  - tls://1.0.0.1:853
+  - tls://dns.google:853
+  
+proxies:
+  - {name: 埃及1, server: 106.75.152.119, port: 1000, username: 46970743-05c401c0-rand, password: wifi-eg---, type: socks5, skip-cert-verify: false}
+  - {name: 埃及2, server: 106.75.152.119, port: 1001, username: 46970743-05c401c0-rand, password: wifi-eg---, type: socks5, skip-cert-verify: false}
+  - {name: 埃及3, server: 106.75.152.119, port: 1002, username: 46970743-05c401c0-rand, password: wifi-eg---, type: socks5, skip-cert-verify: false}
+  - {name: 埃及4, server: 106.75.152.119, port: 1003, username: 46970743-05c401c0-rand, password: wifi-eg---, type: socks5, skip-cert-verify: false}
+  - {name: 埃及5, server: 106.75.152.119, port: 1004, username: 46970743-05c401c0-rand, password: wifi-eg---, type: socks5, skip-cert-verify: false}
+
+
+proxy-groups:
+  - { name: "埃及(买的1G流量)", type: select, proxies: [埃及1,埃及2,埃及3,埃及4,埃及5]}
+
+
+rules:
+  - DOMAIN,myaccount.google.com,Googleplay 
+  - DOMAIN,accounts.google.com,Googleplay
+  - DOMAIN,play.googleapis.com,Googleplay
+  - DOMAIN,play-fe.googleapis.com,Googleplay
+  - DOMAIN-SUFFIX,IPInfo.io,谷歌
+  - MATCH,代理
