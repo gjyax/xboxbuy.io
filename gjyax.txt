@@ -7,12 +7,14 @@ external-controller: :9090
   
 proxies:
   - { name: '🇭🇰 香港 02丨1x HK', type: ss, server: special-south.nongfuwater.top, port: 12023, cipher: aes-128-gcm, password: haMLMXirByn6rGVh, plugin: obfs, plugin-opts: { mode: http, host: 66f7d6ce9189.microsoft.com }, tfo: true, udp: true }
-  - {name: AIJI, server: 106.75.152.119, port: 1000, username: 46970743-da267b09-4b00e6, password: mobile-eg---, type: socks5, skip-cert-verify: false}
+  - {name: 埃及1, server: 106.75.152.119, port: 1000, username: 46970743-da267b09-4b00e6, password: mobile-eg---, type: socks5, skip-cert-verify: false}
+  - {name: 尼日1, server: 106.75.152.119, port: 1001, username: 46970743-da267b09-d9c19a, password: mobile-ng--, type: socks5, skip-cert-verify: false}
+  - {name: 尼日2, server: 106.75.152.119, port: 1002, username: 46970743-da267b09-e18297, password: mobile-ng--, type: socks5, skip-cert-verify: false}
 
 
 proxy-groups:
   - { name: "代理", type: select, proxies: ['🇭🇰 香港 02丨1x HK']}
-  - { name: "Googleplay", type: select, proxies: [AIJI]}
+  - { name: "Googleplay", type: select, proxies: [埃及1,尼日1,尼日2]}
   - { name: "谷歌", type: select, proxies: [Googleplay,"代理"]}
 
 
