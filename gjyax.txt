@@ -6,17 +6,23 @@ log-level: info
 external-controller: :9090
   
 proxies:
+  - { name: '🇭🇰 香港 01丨1x HK', type: ss, server: special-south.nongfuwater.top, port: 12022, cipher: aes-128-gcm, password: haMLMXirByn6rGVh, plugin: obfs, plugin-opts: { mode: http, host: 66f7d6ce9189.microsoft.com }, tfo: true, udp: true }
   - { name: '🇭🇰 香港 02丨1x HK', type: ss, server: special-south.nongfuwater.top, port: 12023, cipher: aes-128-gcm, password: haMLMXirByn6rGVh, plugin: obfs, plugin-opts: { mode: http, host: 66f7d6ce9189.microsoft.com }, tfo: true, udp: true }
-  - {name: 埃及1, server: 106.75.152.119, port: 1000, username: 46970743-da267b09-rand, password: wifi-eg---, type: socks5, skip-cert-verify: false}
+  - { name: '🇭🇰 香港 03丨1x HK', type: ss, server: special-south.nongfuwater.top, port: 12024, cipher: aes-128-gcm, password: haMLMXirByn6rGVh, plugin: obfs, plugin-opts: { mode: http, host: 66f7d6ce9189.microsoft.com }, tfo: true, udp: true }
+  - { name: '🇯🇵 日本 01丨1x JP', type: ss, server: special-east.nongfuwater.top, port: 12011, cipher: aes-128-gcm, password: haMLMXirByn6rGVh, plugin: obfs, plugin-opts: { mode: http, host: 66f7d6ce9189.microsoft.com }, tfo: true, udp: true }
+  - { name: '🇯🇵 日本 02丨1x JP', type: ss, server: special-east.nongfuwater.top, port: 12010, cipher: aes-128-gcm, password: haMLMXirByn6rGVh, plugin: obfs, plugin-opts: { mode: http, host: 66f7d6ce9189.microsoft.com }, tfo: true, udp: true }
+  - { name: '🇺🇸 美国-纽约丨1x US', type: ss, server: special-east.nongfuwater.top, port: 13006, cipher: aes-128-gcm, password: haMLMXirByn6rGVh, plugin: obfs, plugin-opts: { mode: http, host: 66f7d6ce9189.microsoft.com }, tfo: true, udp: true }
+  - { name: '🇺🇸 美国-丹佛丨1x US', type: ss, server: special-east.nongfuwater.top, port: 13110, cipher: aes-128-gcm, password: haMLMXirByn6rGVh, plugin: obfs, plugin-opts: { mode: http, host: 66f7d6ce9189.microsoft.com }, tfo: true, udp: true }
+  - {name: 埃及1, server: 106.75.152.119, port: 1000, username: 46970743-da267b09-4b00e6, password: mobile-eg---, type: socks5, skip-cert-verify: false}
   - {name: 埃及2, server: 106.75.152.119, port: 1001, username: 46970743-da267b09-42a877, password: mobile-eg---, type: socks5, skip-cert-verify: false}
   - {name: 埃及3, server: 106.75.152.119, port: 1002, username: 46970743-da267b09-9fdc8d, password: mobile-eg---, type: socks5, skip-cert-verify: false}
-  - {name: 埃及4, server: 106.75.152.119, port: 1004, username: 46970743-da267b09-3786d9, password: mobile-eg---, type: socks5, skip-cert-verify: false}
+  - {name: 埃及4, server: 106.75.152.119, port: 1003, username: 46970743-da267b09-9ac007, password: mobile-eg---, type: socks5, skip-cert-verify: false}
   - {name: 尼日1, server: 106.75.152.119, port: 1001, username: 46970743-da267b09-d9c19a, password: mobile-ng--, type: socks5, skip-cert-verify: false}
   - {name: 尼日2, server: 106.75.152.119, port: 1002, username: 46970743-da267b09-e18297, password: mobile-ng--, type: socks5, skip-cert-verify: false}
 
 
 proxy-groups:
-  - { name: "代理", type: select, proxies: ['🇭🇰 香港 02丨1x HK']}
+  - { name: "代理", type: select, proxies: ['🇭🇰 香港 01丨1x HK','🇭🇰 香港 02丨1x HK','🇭🇰 香港 03丨1x HK','🇯🇵 日本 01丨1x JP','🇯🇵 日本 02丨1x JP','🇺🇸 美国-纽约丨1x US','🇺🇸 美国-丹佛丨1x US']}
   - { name: "Googleplay", type: select, proxies: [埃及1,埃及2,埃及3,埃及4,尼日1,尼日2]}
   - { name: "谷歌", type: select, proxies: [Googleplay,"代理"]}
 
