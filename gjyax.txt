@@ -15,10 +15,10 @@ proxies:
   - { name: '🇺🇸 美国-丹佛丨1x US', type: ss, server: special-east.nongfuwater.top, port: 13110, cipher: aes-128-gcm, password: haMLMXirByn6rGVh, plugin: obfs, plugin-opts: { mode: http, host: 66f7d6ce9189.microsoft.com }, tfo: true, udp: true }
   - {name: 埃及1, server: 106.75.152.119, port: 1000, username: 46970743-da267b09-rand, password: wifi-eg---, type: socks5, skip-cert-verify: false}
   - {name: 埃及2, server: 106.75.152.119, port: 1001, username: 46970743-da267b09-rand, password: wifi-eg---, type: socks5, skip-cert-verify: false}
-  - {name: 埃及3手机, server: 106.75.152.119, port: 1000, username: 46970743-da267b09-0defef, password: mobile-eg---, type: socks5, skip-cert-verify: false}
-  - {name: 埃及4手机, server: 106.75.152.119, port: 1001, username: 46970743-da267b09-fa1271, password: mobile-eg---, type: socks5, skip-cert-verify: false}
+  - {name: 埃及3, server: 106.75.152.119, port: 1000, username: 46970743-da267b09-0defef, password: mobile-eg---, type: socks5, skip-cert-verify: false}
+  - {name: 埃及4, server: 106.75.152.119, port: 1001, username: 46970743-da267b09-fa1271, password: mobile-eg---, type: socks5, skip-cert-verify: false}
   - {name: 尼日1, server: 106.75.152.119, port: 1001, username: 46970743-da267b09-rand, password: wifi-ng---, type: socks5, skip-cert-verify: false}
-  - {name: 尼日2手机, server: 106.75.152.119, port: 1004, username: 46970743-da267b09-9b2845, password: mobile-ng---, type: socks5, skip-cert-verify: false}
+  - {name: 尼日2, server: 106.75.152.119, port: 1004, username: 46970743-da267b09-9b2845, password: mobile-ng---, type: socks5, skip-cert-verify: false}
 
 
 proxy-groups:
