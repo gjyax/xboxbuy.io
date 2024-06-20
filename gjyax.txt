@@ -19,7 +19,7 @@ proxies:
   - {name: 埃及4, server: 106.75.152.119, port: 1001, username: 46970743-da267b09-fa1271, password: mobile-eg---, type: socks5, skip-cert-verify: false}
   - {name: 尼日1, server: 106.75.152.119, port: 1001, username: 46970743-da267b09-rand, password: wifi-ng---, type: socks5, skip-cert-verify: false}
   - {name: 尼日2, server: 106.75.152.119, port: 1004, username: 46970743-da267b09-9b2845, password: mobile-ng---, type: socks5, skip-cert-verify: false}
-  - {name: 尼日**, server: 3aec99971f5ab61d.nbd.us.ip2world.vip, port: 6001, username: maomin-zone-resi-region-ng, password: maomin970497206, type: socks5, skip-cert-verify: false}
+  - {name: 尼日**, server: 74.211.99.50, port: 9527, username: maomin-zone-resi-region-ng, password: maomin970497206, type: socks5, skip-cert-verify: false}
 
 
 proxy-groups:
