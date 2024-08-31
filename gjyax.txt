@@ -14,18 +14,13 @@ proxies:
   - { name: '🇺🇸 美国-纽约丨1x US', type: ss, server: special-east.nongfuwater.top, port: 13006, cipher: aes-128-gcm, password: haMLMXirByn6rGVh, plugin: obfs, plugin-opts: { mode: http, host: 66f7d6ce9189.microsoft.com }, tfo: true, udp: true }
   - { name: '🇺🇸 美国-丹佛丨1x US', type: ss, server: special-east.nongfuwater.top, port: 13110, cipher: aes-128-gcm, password: haMLMXirByn6rGVh, plugin: obfs, plugin-opts: { mode: http, host: 66f7d6ce9189.microsoft.com }, tfo: true, udp: true }
   - {name: 埃及1, server: 106.75.152.119, port: 1000, username: 46970743-da267b09-rand, password: wifi-eg---, type: socks5, skip-cert-verify: false}
-  - {name: 埃及2, server: 106.75.152.119, port: 1001, username: 46970743-da267b09-rand, password: wifi-eg---, type: socks5, skip-cert-verify: false}
-  - {name: 埃及3, server: 106.75.152.119, port: 1000, username: 46970743-da267b09-0defef, password: mobile-eg---, type: socks5, skip-cert-verify: false}
-  - {name: 埃及4, server: 106.75.152.119, port: 1001, username: 46970743-da267b09-fa1271, password: mobile-eg---, type: socks5, skip-cert-verify: false}
-  - {name: 尼日1, server: 106.75.152.119, port: 1001, username: 46970743-da267b09-rand, password: wifi-ng---, type: socks5, skip-cert-verify: false}
-  - {name: 尼日2, server: 106.75.152.119, port: 1004, username: 46970743-da267b09-9b2845, password: mobile-ng---, type: socks5, skip-cert-verify: false}
-  - {name: 尼日**, server: 74.211.99.50, port: 9527, username: maomin-zone-resi-region-ng, password: maomin970497206, type: socks5, skip-cert-verify: false}
-  - {name: 香港独享, server: shcm1-06080150.gorelay.xyz, port: 57037, username: maomin, password: maomin970497206, type: socks5, skip-cert-verify: false}
+  - {name: 香港独享1, server: shcm1-06080150.gorelay.xyz, port: 34702, username: maomin, password: maomin970497206, type: socks5, skip-cert-verify: false}
+  - {name: 香港独享2, server: gdcm1-06080145.gorelay.xyz, port: 34702, username: maomin, password: maomin970497206, type: socks5, skip-cert-verify: false}
 
 
 proxy-groups:
-  - { name: "代理", type: select, proxies: ['🇭🇰 香港 01丨1x HK','🇭🇰 香港 02丨1x HK','🇭🇰 香港 03丨1x HK','🇯🇵 日本 01丨1x JP','🇯🇵 日本 02丨1x JP','🇺🇸 美国-纽约丨1x US','🇺🇸 美国-丹佛丨1x US',香港独享]}
-  - { name: "Googleplay", type: select, proxies: [埃及1,埃及2,埃及3,埃及4,尼日1,尼日2,尼日**]}
+  - { name: "代理", type: select, proxies: ['🇭🇰 香港 01丨1x HK','🇭🇰 香港 02丨1x HK','🇭🇰 香港 03丨1x HK','🇯🇵 日本 01丨1x JP','🇯🇵 日本 02丨1x JP','🇺🇸 美国-纽约丨1x US','🇺🇸 美国-丹佛丨1x US',香港独享1,香港独享2]}
+  - { name: "Googleplay", type: select, proxies: [埃及1]}
   - { name: "谷歌", type: select, proxies: [Googleplay,"代理"]}
 
 
