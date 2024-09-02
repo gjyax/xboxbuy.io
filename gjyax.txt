@@ -14,8 +14,8 @@ proxies:
   - { name: '🇺🇸 美国-纽约丨1x US', type: ss, server: special-east.nongfuwater.top, port: 13006, cipher: aes-128-gcm, password: haMLMXirByn6rGVh, plugin: obfs, plugin-opts: { mode: http, host: 66f7d6ce9189.microsoft.com }, tfo: true, udp: true }
   - { name: '🇺🇸 美国-丹佛丨1x US', type: ss, server: special-east.nongfuwater.top, port: 13110, cipher: aes-128-gcm, password: haMLMXirByn6rGVh, plugin: obfs, plugin-opts: { mode: http, host: 66f7d6ce9189.microsoft.com }, tfo: true, udp: true }
   - {name: 埃及1, server: 106.75.152.119, port: 1000, username: 46970743-da267b09-rand, password: wifi-eg---, type: socks5, skip-cert-verify: false}
-  - {name: 香港独享1, server: shcm1-06080150.gorelay.xyz, port: 34702, username: maomin, password: maomin970497206, type: socks5, skip-cert-verify: false}
-  - {name: 香港独享2, server: gdcm1-06080145.gorelay.xyz, port: 34702, username: maomin, password: maomin970497206, type: socks5, skip-cert-verify: false}
+  - {name: 香港独享1, server: shhk1-08051752.520300.xyz, port: 56734, username: maomin, password: maomin970497206, type: socks5, skip-cert-verify: false}
+  - {name: 香港独享2, server: shhk1-08051752.520300.xyz, port: 34702, username: maomin, password: maomin970497206, type: socks5, skip-cert-verify: false}
 
 
 proxy-groups:
