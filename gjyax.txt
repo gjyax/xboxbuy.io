@@ -16,10 +16,11 @@ proxies:
   - {name: 埃及1, server: 106.75.152.119, port: 1000, username: 46970743-da267b09-rand, password: wifi-eg---, type: socks5, skip-cert-verify: false}
   - {name: 香港独享1, server: shhk1-08051752.520300.xyz, port: 56734, username: maomin, password: maomin970497206, type: socks5, skip-cert-verify: false}
   - {name: 香港独享2, server: shhk1-08051752.520300.xyz, port: 34702, username: maomin, password: maomin970497206, type: socks5, skip-cert-verify: false}
+  - {name: V2阿根廷, server: f3grveyq.gabuit.com , port: 30101, uuid: 04AD7029-AC73-C78D-2E6E-338107678C59 , alterId: 0 , cipher: auto, type: vmess, skip-cert-verify: false}
 
 
 proxy-groups:
-  - { name: "代理", type: select, proxies: ['🇭🇰 香港 01丨1x HK','🇭🇰 香港 02丨1x HK','🇭🇰 香港 03丨1x HK','🇯🇵 日本 01丨1x JP','🇯🇵 日本 02丨1x JP','🇺🇸 美国-纽约丨1x US','🇺🇸 美国-丹佛丨1x US',香港独享1,香港独享2]}
+  - { name: "代理", type: select, proxies: ['🇭🇰 香港 01丨1x HK','🇭🇰 香港 02丨1x HK','🇭🇰 香港 03丨1x HK','🇯🇵 日本 01丨1x JP','🇯🇵 日本 02丨1x JP','🇺🇸 美国-纽约丨1x US','🇺🇸 美国-丹佛丨1x US',香港独享1,香港独享2,V2阿根廷]}
   - { name: "Googleplay", type: select, proxies: [埃及1]}
   - { name: "谷歌", type: select, proxies: [Googleplay,"代理"]}
 
