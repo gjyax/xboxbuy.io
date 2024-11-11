@@ -22,6 +22,7 @@ proxies:
   - { name: '🇿🇦 南非丨1x ZA', type: ss, server: xcbatdja.epicgames.ink, port: 12036, cipher: aes-128-gcm, password: haMLMXirByn6rGVh, plugin: obfs, plugin-opts: { mode: http, host: 66f7d6ce9189.microsoft.com }, tfo: true, udp: true }
   - { name: '🇦🇷 阿根廷 01丨2x AR', type: ss, server: s1mtd8xl.epicgames.ink, port: 13015, cipher: aes-128-gcm, password: haMLMXirByn6rGVh, plugin: obfs, plugin-opts: { mode: http, host: 66f7d6ce9189.microsoft.com }, tfo: true, udp: true }
   - { name: '🇦🇷 阿根廷 02丨2x AR', type: ss, server: s1mtd8xl.epicgames.ink, port: 13211, cipher: aes-128-gcm, password: haMLMXirByn6rGVh, plugin: obfs, plugin-opts: { mode: http, host: 66f7d6ce9189.microsoft.com }, tfo: true, udp: true }
+  - { name: ' 南非UDP', type: ss, server: 129.232.222.67, port: 49371, cipher: aes-256-gcm, password: MRHCQ9CHpX, tfo: true, udp: true }
   - {name: 埃及1, server: 106.75.152.119, port: 1000, username: 46970743-da267b09-rand, password: wifi-eg---, type: socks5, skip-cert-verify: false}
   - {name: 南非独享1, server: shhk1-08051752.520300.xyz, port: 56734, username: maomin, password: maomin970497206, type: socks5, skip-cert-verify: false}
   - {name: 香港独享2, server: gdhk1-07312200.520300.xyz, port: 36121, username: maomin, password: maomin970497206, type: socks5, skip-cert-verify: false}
@@ -29,7 +30,7 @@ proxies:
 
 
 proxy-groups:
-  - { name: "代理", type: select, proxies: ['🇭🇰 香港 01丨1x HK','🇭🇰 香港 02丨1x HK','🇭🇰 香港 03丨1x HK','🇯🇵 日本 01丨1x JP','🇯🇵 日本 02丨1x JP','🇺🇸 美国-纽约丨1x US','🇺🇸 美国-丹佛丨1x US','🇳🇿 新西兰丨2x NZ','🇳🇿 新西兰家宽丨3x NZ','🇬🇧 英国丨1x GB','🇬🇧 英国家宽 01丨5x GB','🇨🇴 哥伦比亚丨5x CO','🇨🇱 智利丨2x CL','🇿🇦 南非丨1x ZA','🇦🇷 阿根廷 01丨2x AR','🇦🇷 阿根廷 02丨2x AR',南非独享1,香港独享2,V2阿根廷]}
+  - { name: "代理", type: select, proxies: ['🇭🇰 香港 01丨1x HK','🇭🇰 香港 02丨1x HK','🇭🇰 香港 03丨1x HK','🇯🇵 日本 01丨1x JP','🇯🇵 日本 02丨1x JP','🇺🇸 美国-纽约丨1x US','🇺🇸 美国-丹佛丨1x US','🇳🇿 新西兰丨2x NZ','🇳🇿 新西兰家宽丨3x NZ','🇬🇧 英国丨1x GB','🇬🇧 英国家宽 01丨5x GB','🇨🇴 哥伦比亚丨5x CO','🇨🇱 智利丨2x CL','🇿🇦 南非丨1x ZA','🇦🇷 阿根廷 01丨2x AR','🇦🇷 阿根廷 02丨2x AR',' 南非UDP',南非独享1,香港独享2,V2阿根廷]}
   - { name: "Googleplay", type: select, proxies: [埃及1]}
   - { name: "谷歌", type: select, proxies: [Googleplay,"代理"]}
 
