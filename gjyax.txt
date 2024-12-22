@@ -23,7 +23,7 @@ proxies:
   - { name: '🇦🇷 阿根廷 02丨2x AR', type: ss, server: s1mtd8xl.epicgames.ink, port: 13211, cipher: aes-128-gcm, password: haMLMXirByn6rGVh, plugin: obfs, plugin-opts: { mode: http, host: f727ccdde6bd.microsoft.com }, tfo: true, udp: true }
   - { name: ' 南非UDP', type: ss, server: 129.232.222.67, port: 49371, cipher: aes-256-gcm, password: MRHCQ9CHpX, tfo: true, udp: true }
   - {name: 埃及1, server: 106.75.152.119, port: 1000, username: 46970743-da267b09-rand, password: wifi-eg---, type: socks5, skip-cert-verify: false}
-  - {name: 南非独享1, server: shhk1-08051752.520300.xyz, port: 56734, username: maomin, password: maomin970497206, type: socks5, skip-cert-verify: false}
+  - {name: 香港独享1, server: shhk1-08051752.520300.xyz, port: 56734, username: maomin, password: maomin970497206, type: socks5, skip-cert-verify: false}
   - {name: 香港独享2, server: gdhk1-07312200.520300.xyz, port: 36121, username: maomin, password: maomin970497206, type: socks5, skip-cert-verify: false}
   - {name: V2阿根廷, server: f3grveyq.gabuit.com , port: 30101, uuid: 04AD7029-AC73-C78D-2E6E-338107678C59 , alterId: 0 , cipher: auto, type: vmess, skip-cert-verify: false}
 
