@@ -29,7 +29,7 @@ proxies:
 
 
 proxy-groups:
-  - { name: "代理", type: select, proxies: ['🇭🇰 香港 01丨1x HK','🇭🇰 香港 02丨1x HK','🇭🇰 香港 03丨1x HK','🇯🇵 日本 01丨1x JP','🇯🇵 日本 02丨1x JP','🇺🇸 美国-纽约丨1x US','🇺🇸 美国-洛杉矶丨1x US','🇳🇿 新西兰丨2x NZ','🇬🇧 英国丨1x GB','🇬🇧 英国家宽 01丨5x GB','🇨🇴 哥伦比亚丨5x CO','🇨🇱 智利丨2x CL','🇿🇦 南非丨1x ZA','🇦🇷 阿根廷 01丨2x AR','🇦🇷 阿根廷 02丨2x AR',' 南非UDP',南非独享1,香港独享2,V2阿根廷]}
+  - { name: "代理", type: select, proxies: ['🇭🇰 香港 01丨1x HK','🇭🇰 香港 02丨1x HK','🇭🇰 香港 03丨1x HK','🇯🇵 日本 01丨1x JP','🇯🇵 日本 02丨1x JP','🇺🇸 美国-纽约丨1x US','🇺🇸 美国-洛杉矶丨1x US','🇳🇿 新西兰丨2x NZ','🇬🇧 英国丨1x GB','🇬🇧 英国家宽 01丨5x GB','🇨🇴 哥伦比亚丨5x CO','🇨🇱 智利丨2x CL','🇿🇦 南非丨1x ZA','🇦🇷 阿根廷 01丨2x AR','🇦🇷 阿根廷 02丨2x AR',' 南非UDP',香港独享1,香港独享2,V2阿根廷]}
   - { name: "Googleplay", type: select, proxies: [埃及1]}
   - { name: "谷歌", type: select, proxies: [Googleplay,"代理"]}
 
